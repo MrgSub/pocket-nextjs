@@ -3,15 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "fly:deploy:pocketbase": "cd pocketbase && fly deploy --app pocketbase",
+    "fly:launch:pocketbase": "cd pocketbase && fly launch --app pocketbase --detach",
+    "railway:deploy:pocketbase": "cd pocketbase && railway deploy",
+    "db": "./pocketbase serve",
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "concurrently \"npm run dev\" \"npm run db\"",
     "lint": "next lint"
   },
   "dependencies": {
+    "concurrently": "^8.2.2",
+    "next": "14.2.5",
+    "pocketbase": "^0.21.4",
     "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.5"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "typescript": "^5",
